@@ -6,16 +6,16 @@ use App\Http\Controllers\KeywordController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return redirect()->to('/register');
-});
+Route::middleware(['guest'])->group(function () {
+    Route::get('/', function () {
+        return redirect()->to('/register');
+    });
 // User regitration & login
-Route::get('/register', [AuthController::class, 'register']);
-Route::post('/register', [AuthController::class, 'create'])->name('register');
-Route::get('/login', [AuthController::class, 'login']);
-Route::post('/login', [AuthController::class, 'postLogin'])->name('login');
-Route::get('/user/{id}', 'UserController@show');
-
+    Route::get('/register', [AuthController::class, 'register']);
+    Route::post('/register', [AuthController::class, 'create'])->name('register');
+    Route::get('/login', [AuthController::class, 'login']);
+    Route::post('/login', [AuthController::class, 'postLogin'])->name('login');
+});
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/keywords', [KeywordController::class, 'index'])->name('keywords');
@@ -23,8 +23,8 @@ Route::middleware(['auth'])->group(function () {
 
 // Content Calendar - View All
     Route::get('/calendar', [CalendarController::class, 'getAll']);
-    Route::post('/calendar/create',  [CalendarController::class, 'create']);
-    Route::get('/calendar/{day}',  [CalendarController::class, 'getDay']);
+    Route::post('/calendar/create', [CalendarController::class, 'create']);
+    Route::get('/calendar/{day}', [CalendarController::class, 'getDay']);
 
 });
 // Get the SEMrush Keywords
@@ -46,6 +46,7 @@ Route::get('/users', 'UserController@index');
 Route::post('/users', 'UserController@create');
 Route::put('/users/{id}', 'UserController@update');
 Route::delete('/users/{id}', 'UserController@delete');
+Route::get('/user/{id}', 'UserController@show');
 
 // Admin Keywords View
 
