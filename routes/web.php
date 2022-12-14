@@ -9,12 +9,13 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['guest'])->group(function () {
     Route::get('/', function () {
         return redirect()->to('/register');
-    });
+    })->name('home');
 // User regitration & login
-    Route::get('/register', [AuthController::class, 'register']);
-    Route::post('/register', [AuthController::class, 'create'])->name('register');
-    Route::get('/login', [AuthController::class, 'login']);
-    Route::post('/login', [AuthController::class, 'postLogin'])->name('login');
+    Route::get('/register', [AuthController::class, 'register'])->name('customer.register-page');
+    Route::post('/register', [AuthController::class, 'create'])->name('customer.register');
+    Route::get('/login', [AuthController::class, 'login'])->name('customer.login-page');
+    Route::post('/login', [AuthController::class, 'postLogin'])->name('customer.login');
+    Route::get('/reset-password', [AuthController::class, 'postLogin'])->name('customer.password-reset-page');
 });
 
 Route::middleware(['auth'])->group(function () {
