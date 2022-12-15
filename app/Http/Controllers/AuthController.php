@@ -46,7 +46,6 @@ class AuthController extends Controller
     public function login()
     {
 
-        session()->flash(FlashMessageEnum::SUCCESS->value, 'Login Successful');
         return view('auth.login');
     }
 
@@ -57,7 +56,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             session()->flash(FlashMessageEnum::SUCCESS->value, 'Login Successful');
-            return redirect()->route('keywords');
+            return redirect()->route('keywords.index');
         }
         session()->flash(FlashMessageEnum::ERROR->value, 'Cannot login');
         return redirect()->back();

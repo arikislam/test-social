@@ -5,7 +5,7 @@
     'icon' => null
 ])
     <!--begin::Toast-->
-<div class="position-fixed top-0 end-0 p-3 z-index-3">
+<div class="position-fixed top-0 end-0 p-3" style="z-index: 9999">
     <div id="kt_docs_toast_toggle" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header">
             <span class="svg-icon svg-icon-2 svg-icon-primary me-3">

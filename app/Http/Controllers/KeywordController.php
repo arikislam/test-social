@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\FlashMessageEnum;
 use App\Models\Keyword;
 use Illuminate\Http\Request;
 
@@ -9,6 +10,8 @@ class KeywordController extends Controller
 {
     public function index()
     {
+        session()->flash(FlashMessageEnum::SUCCESS->value, 'Login Successful');
+
         return view('keywords.index');
     }
 
