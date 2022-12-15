@@ -19,7 +19,7 @@ Route::middleware(['guest'])->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/keywords', [KeywordController::class, 'index'])->name('keywords');
+    Route::get('/keywords', [KeywordController::class, 'index'])->name('keywords.index');
     Route::post('/keywords', [KeywordController::class, 'store'])->name('search-keywords');
 
 // Content Calendar - View All

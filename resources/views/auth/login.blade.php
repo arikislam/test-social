@@ -9,9 +9,10 @@
                 <div class="w-lg-500px p-10">
                     <!--begin::Form-->
                     <form class="form w-100" action="{{route('customer.login')}}" method="post">
+                        @csrf
                         <!--begin::Heading-->
                         <div class="text-center mb-11">
-                            <!--begin::Title-->
+                            <!--begin::Title-->'
                             <h1 class="text-dark fw-bolder mb-3">Sign In</h1>
                             <!--end::Title-->
                             <!--begin::Subtitle-->
@@ -33,6 +34,7 @@
 
                         <!--begin::Input group=-->
                         <x-forms.input-text
+                                type="password"
                                 name="password"
                                 placeholder="Password"
                                 class="fv-row mb-8"

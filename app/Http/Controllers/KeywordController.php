@@ -9,7 +9,7 @@ class KeywordController extends Controller
 {
     public function index()
     {
-        return view('keyword_research');
+        return view('keywords.index');
     }
 
     public function store(Request $request)
@@ -18,7 +18,7 @@ class KeywordController extends Controller
         $response = $this->callSEMrushAPI($keywords);
         $audience = data_get($response, 'audience');
         $keyWord = $this->saveKeywords($keywords, $audience);
-        return view('keyword_research', ['response' => $response, 'keyword_id' => $keyWord->id]);
+        return view('keywords.index', ['response' => $response, 'keyword_id' => $keyWord->id]);
     }
 
     public function saveKeywords($keywords, $audience)

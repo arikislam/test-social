@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\UserType;
+use App\Enums\FlashMessageEnum;
+use App\Enums\UserTypeEnum;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegistrationRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 
 class AuthController extends Controller
@@ -29,7 +31,7 @@ class AuthController extends Controller
                 'name'      => $data['name'],
                 'email'     => $data['email'],
                 'password'  => $data['password'],
-                'user_type' => UserType::CUSTOMER,
+                'user_type' => UserTypeEnum::CUSTOMER,
             ]);
 
             return redirect()->to('/login');
@@ -43,6 +45,8 @@ class AuthController extends Controller
 
     public function login()
     {
+
+        session()->flash(FlashMessageEnum::SUCCESS->value, 'Login Successful');
         return view('auth.login');
     }
 
@@ -50,12 +54,13 @@ class AuthController extends Controller
     public function postLogin(LoginRequest $request)
     {
         $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials)) {
 
+        if (Auth::attempt($credentials)) {
+            session()->flash(FlashMessageEnum::SUCCESS->value, 'Login Successful');
             return redirect()->route('keywords');
         }
-
-        return redirect()->back()->with(['message' => 'Oppes! You have entered invalid credentials']);
+        session()->flash(FlashMessageEnum::ERROR->value, 'Cannot login');
+        return redirect()->back();
 
     }
 }

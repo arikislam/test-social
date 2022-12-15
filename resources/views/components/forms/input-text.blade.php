@@ -47,7 +47,9 @@
            @if($focus) autofocus @endif
            @if(!blank($readonly)) readonly @endif />
     @error($name)
-    <span class="color__danger" role="alert"><strong>{{ $message }}</strong></span>
+    <div class="fv-plugins-message-container invalid-feedback">
+        <strong>{{$message}}</strong>
+    </div>
     @enderror
     <span class="{{'custom-message-'. blank($inputId)? $name: $inputId}}"></span>
 </div>
