@@ -52,7 +52,7 @@
                         <a class="menu-link" href="{{route($menu['route'])}}"
                            target="{{$menu['target']}}">
 						<span class="menu-icon">
-                            <i class="fas fa-sign-out" aria-hidden="true"></i></span>
+                            <i class="{{$menu['iconClass']}}" aria-hidden="true"></i></span>
                             <span class="menu-title">{{$menu['name']}}</span>
                         </a>
                         <!--end:Menu link-->

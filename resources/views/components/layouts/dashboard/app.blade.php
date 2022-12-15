@@ -60,7 +60,13 @@
             <x-partials.dashboard.side-bar/>
 
             <!--end::Sidebar-->
-           {{$slot}}
+
+            <!--begin::Main-->
+            <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
+                {{$slot}}
+            <x-partials.dashboard.footer/>
+            </div>
+            <!--end:::Main-->
         </div>
         <!--end::Wrapper-->
     </div>

@@ -8,7 +8,7 @@ return [
             'route'       => 'keywords.index',
             'hasChild'    => false,
             'target'      => '',
-            'iconClass'   => '',
+            'iconClass'   => 'fas fa-sign-out',
             'groupRoutes' => [],
         ],
     ],
